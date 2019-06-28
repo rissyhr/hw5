@@ -61,9 +61,17 @@ func handlePata(w http.ResponseWriter, r *http.Request) {
 	// パタトクカシーーができます。
 	//pata := append(aMoji, bMoji...)
 	pata := ""
-	for i := range aMoji {
-		pata += string(aMoji[i]) + string(bMoji[i])
-	}
+	if (len(aMoji) > len(bMoji)){
+		for i := range bMoji {
+			pata += string(aMoji[i]) + string(bMoji[i])
+		}
+		pata+= string(aMoji[len(bMoji):])
+	} else {
+		for i := range aMoji {
+			pata += string(aMoji[i]) + string(bMoji[i])
+		}
+		pata+= string(bMoji[len(aMoji):])
+	}	
 	content.Pata = pata
 
 	// example.htmlというtemplateをcontentの内容を使って、{{.A}}などのとこ

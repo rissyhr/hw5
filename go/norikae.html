@@ -1,17 +1,30 @@
 <html>
-  <head><title>JSONを読み込む例</title></head>
+  <head><title>乗り換え案内</title></head>
   <body>
-    路線：
-    <ul>
+    乗り換え案内
+    <br>
+    <form action ="/search">
+    出発：
+    <select name="from">
       {{range .}}
-      <li> {{.Name}}
-        <ul>
-          {{range .Stations}}
-          <li> {{.}} </li>
-          {{end}}
-        </ul> 
-      </li>
+      <option disabled>{{.Name}}</option>
+      {{range .Stations}}
+      <option >{{.}}</option>
       {{end}}
-    </ul>
+      {{end}}
+    </select>
+    <br>
+    到着：
+    <select name="to">
+      {{range .}}
+      <option disabled>{{.Name}}</option>
+      {{range .Stations}}
+      <option >{{.}}</option>
+      {{end}}
+      {{end}}
+    </select>
+    <br>
+    <input type="submit" value="検索" >
+    </form>
   </body>
 </html>
